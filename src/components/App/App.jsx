@@ -13,11 +13,16 @@ import Notification from "../Notification/Notification";
 import "./App.css";
 import { useEffect } from "react";
 import { fetchContacts } from "../../redux/contactsOps";
+import Loader from "../Loader/Loader";
+import Error from "../Error/Error";
 
 export default function App() {
   const contacts = useSelector((state) => state.contacts.items);
+  const isLoading = useSelector((state) => state.contacts.loading);
+  const isError = useSelector((state) => state.contacts.error);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
@@ -33,6 +38,8 @@ export default function App() {
         <ContactForm />
         <SearchBox />
         <div>{contacts.length === 0 && <Notification />}</div>
+        {isLoading && <Loader>Loading message</Loader>}
+        {isError && <Error>Error message</Error>}
         {contacts.length > 0 && <ContactList />}
         {/* <Analytics /> */}
       </Container>
