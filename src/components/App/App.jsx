@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/react";
 
 import Section from "../Section/Section";
 import Container from "../Container/Container";
@@ -11,19 +11,30 @@ import ContactList from "../ContactList/ContactList";
 import Notification from "../Notification/Notification";
 
 import "./App.css";
+import { useEffect } from "react";
+import { fetchContacts } from "../../redux/contactsOps";
 
 export default function App() {
   const contacts = useSelector((state) => state.contacts.items);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
     <Section>
       <Container>
-        <Heading title="Phonebook release with Redux" bottom tag={`h1`} />
+        <Heading
+          title="Phonebook release with Redux and  mockapi.io"
+          bottom
+          tag={`h1`}
+        />
         <ContactForm />
         <SearchBox />
         <div>{contacts.length === 0 && <Notification />}</div>
-        <ContactList />
-        <Analytics />
+        {contacts.length > 0 && <ContactList />}
+        {/* <Analytics /> */}
       </Container>
     </Section>
   );
