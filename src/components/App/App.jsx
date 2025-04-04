@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-// import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/react";
 
 import Section from "../Section/Section";
 import Container from "../Container/Container";
@@ -13,15 +13,20 @@ import Notification from "../Notification/Notification";
 import "./App.css";
 import { useEffect } from "react";
 import { fetchContacts } from "../../redux/contactsOps";
+import {
+  selectContacts,
+  selectIsLoading,
+  selectIsError,
+} from "../../redux/contactsSlice";
 import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
 
 export default function App() {
   const dispatch = useDispatch();
 
-  const contacts = useSelector((state) => state.contacts.items);
-  const isLoading = useSelector((state) => state.contacts.loading);
-  const isError = useSelector((state) => state.contacts.error);
+  const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -41,7 +46,7 @@ export default function App() {
         {isLoading && <Loader>Loading message</Loader>}
         {isError && <Error>Error message</Error>}
         {contacts.length > 0 && <ContactList />}
-        {/* <Analytics /> */}
+        <Analytics />
       </Container>
     </Section>
   );
