@@ -17,11 +17,11 @@ import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
 
 export default function App() {
+  const dispatch = useDispatch();
+
   const contacts = useSelector((state) => state.contacts.items);
   const isLoading = useSelector((state) => state.contacts.loading);
   const isError = useSelector((state) => state.contacts.error);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
