@@ -19,7 +19,6 @@ export default function ContactForm() {
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values));
-    // dispatch(addContact(values.name, values.number));
     actions.resetForm();
   };
 

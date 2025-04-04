@@ -10,7 +10,6 @@ axios.defaults.baseURL = "https://67ead8da34bcedd95f64c168.mockapi.io";
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchContacts",
   async (_, thunkAPI) => {
-    // console.log("fetchContacts operation!");
     try {
       const response = await axios.get("/contacts");
       return response.data;
@@ -20,12 +19,9 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-// console.dir(fetchContacts.fulfilled(5));
-
 export const addContact = createAsyncThunk(
   "contacts/addContact",
   async (newContact, thunkAPI) => {
-    // console.log(newContact);
     try {
       const response = await axios.post("/contacts", newContact);
       return response.data;

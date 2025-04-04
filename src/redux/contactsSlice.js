@@ -35,12 +35,10 @@ const contactsSlice = createSlice({
       .addCase(fetchContacts.pending, (state) => {
         state.loading = true;
         state.error = false;
-        // console.log("PENDING ACTION REDUCER");
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
-        // console.log("FULFIELD ACTION REDUCER", state, action);
       })
       .addCase(fetchContacts.rejected, (state) => {
         state.loading = false;
@@ -75,6 +73,4 @@ const contactsSlice = createSlice({
   },
 });
 
-// export const { deleteContact } = contactsSlice.actions;
-// export const { addContact, deleteContact } = contactsSlice.actions;
 export default contactsSlice.reducer;
