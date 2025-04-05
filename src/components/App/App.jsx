@@ -36,7 +36,7 @@ export default function App() {
     <Section>
       <Container>
         <Heading
-          title="Phonebook release with Redux and  mockapi.io"
+          title="Phonebook release with Redux and mockapi.io"
           bottom
           tag={`h1`}
         />
